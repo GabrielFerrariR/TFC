@@ -7,7 +7,7 @@ class Users extends Model {
   public id!: number;
   public role!: string;
   public email!: string;
-  public password: string;
+  public password!: string;
 }
 Users.init({
   username: DataTypes.STRING,
