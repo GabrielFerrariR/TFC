@@ -8,10 +8,8 @@ interface ILoginService {
 }
 
 class LoginController {
-  private loginService: ILoginService = new LoginService();
-
-  async login(req: Request, res: Response, _next: NextFunction): Promise<void> {
-    const token: Itoken = await this.loginService.login(req.body);
+  static async login(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const token: Itoken = await LoginService.login(req.body);
     res.status(StatusCodes.OK).json(token);
   }
 }
