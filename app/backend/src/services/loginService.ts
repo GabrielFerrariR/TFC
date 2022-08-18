@@ -5,7 +5,7 @@ import { ILogin, Itoken } from '../interfaces/login';
 import UserService from './userService';
 import Users from '../database/models/Users';
 
-const secret = process.env.JWT_SECRET || 'jwt_secret'
+const secret = process.env.JWT_SECRET || 'jwt_secret';
 
 class LoginService {
   private userService = new UserService();

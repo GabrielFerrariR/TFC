@@ -2,8 +2,6 @@ import * as express from 'express';
 import 'express-async-errors';
 import LoginController from './controllers/loginControler';
 
-const loginController = new LoginController();
-
 class App {
   public app: express.Express;
 
@@ -14,7 +12,7 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
-    this.app.post('/login', loginController.login);
+    this.app.post('/login', LoginController.login);
   }
 
   private config():void {
