@@ -130,6 +130,6 @@ describe('GET /login/validate', async () => {
   it('should return an object with user role', () => {
     expect(chaiHttpResponse.status.valueOf()).to.be.equal(200);
     expect(chaiHttpResponse.body).to.haveOwnProperty('role');
-    expect(chaiHttpResponse.body.role).to.be.equal('user')
+    expect(chaiHttpResponse.body.role).to.be.equal('admin')
   })
 })
