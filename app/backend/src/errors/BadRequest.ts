@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 
 class BadRequest extends Error {
-  static code = StatusCodes.BAD_REQUEST;
+  public code = StatusCodes.BAD_REQUEST;
   constructor(message: string) {
     super();
     this.name = 'BadRequest';
