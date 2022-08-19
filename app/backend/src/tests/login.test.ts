@@ -78,11 +78,35 @@ describe('POST /login on fail', () => {
   })
   describe('when the email is invalid', () => {
     beforeEach( async () => {
+      sinon
+        .stub(Users, 'findOne')
+        .resolves(null)
       chaiHttpResponse = await chai
         .request(app)
         .post('/login').send({
           email: invalidUser.email,
-          password: validUser.password,
+          password: 'secret_admin',
+        });
+    });
+    afterEach(sinon.restore);
+    it('should return status 401', () => {
+      expect(chaiHttpResponse.status.valueOf()).to.be.equal(401);
+    });
+    it('should return an object with the message "Incorrect email or password"', () => {
+      expect(chaiHttpResponse.body).to.haveOwnProperty("message");
+      expect(chaiHttpResponse.body.message).to.be.equal("Incorrect email or password");
+    });
+  })
+  describe('when the password is invalid', () => {
+    beforeEach( async () => {
+      sinon
+        .stub(Users, 'findOne')
+        .resolves(validAdmin as unknown as Model)
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/login').send({
+          email: validAdmin.email,
+          password: 'invalid_admin',
         });
     });
     afterEach(sinon.restore);
