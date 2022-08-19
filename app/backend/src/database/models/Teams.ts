@@ -3,11 +3,11 @@ import {
 } from 'sequelize';
 import db from '.';
 
-class Users extends Model {
+class Teams extends Model {
   public id!: number;
   public teamName!: string;
 }
-Users.init({
+Teams.init({
   teamName: DataTypes.STRING,
 }, {
   sequelize: db,
@@ -16,4 +16,4 @@ Users.init({
   underscored: true,
 });
 
-export default Users;
+export default Teams;

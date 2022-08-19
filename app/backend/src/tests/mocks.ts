@@ -5,3 +5,18 @@ export const invalidUser = {
   email: 'invaliduser@user.com', password: '$2a$08$Y8Abasdasdsadlg/CvVr/gLxYj5UAZVO'
 }
 export let token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY2MDkzMjUzOH0.TCutSMhYPKMMJuO6vmkWDYcRf4N9ERdCk0QY3NAmg9U";
+
+export const teamsArray = [
+  {
+    "id": 1,
+    "teamName": "Avaí/Kindermann"
+  },
+  {
+    "id": 2,
+    "teamName": "Bahia"
+  },
+  {
+    "id": 3,
+    "teamName": "Botafogo"
+  }
+]
