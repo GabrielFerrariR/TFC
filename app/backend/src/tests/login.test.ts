@@ -18,6 +18,8 @@ const { expect } = chai;
 const validAdmin = {id: 1, username:' Admin', role: 'admin', email:'admin@admin.com', password:'$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW' };
 const validUser =  {id:2, username: 'User', role:'user', email: 'user@user.com', password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO'};
 
+let token: string;
+
 const invalidUser = {
   email: 'invaliduser@user.com', password: '$2a$08$Y8Abasdasdsadlg/CvVr/gLxYj5UAZVO'
 }
@@ -117,5 +119,21 @@ describe('POST /login on fail', () => {
       expect(chaiHttpResponse.body).to.haveOwnProperty("message");
       expect(chaiHttpResponse.body.message).to.be.equal("Incorrect email or password");
     });
+  })
+})
+describe('GET /login/validate', async () => {
+  beforeEach(async () => {
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/login/validate')
+      .set( { authorization: token })
+  })
+  afterEach(sinon.restore)
+  it('should return status 200', () => {
+    expect(chaiHttpResponse.status.valueOf()).to.be.equal(200);
+  })
+  it('should return an object with user role', () => {
+    expect(chaiHttpResponse.status.valueOf()).to.be.equal(200);
+    expect(chaiHttpResponse.body).to.haveOwnProperty('role');
   })
 })
