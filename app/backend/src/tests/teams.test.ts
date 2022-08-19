@@ -34,3 +34,21 @@ describe('GET /teams', () => {
     expect(chaiHttpResponse.body).to.be.deep.equal(teamsArray)
   })
 })
+
+describe('GET /teams/:id', () => {
+  beforeEach(async () => {
+    sinon
+      .stub(Teams,'findByPk')
+      .resolves(teamsArray[0] as unknown as Model<any, any> );
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/teams/1');
+  });
+  afterEach(sinon.restore);
+  it('should return a status 200', () => {
+    expect(chaiHttpResponse.status).to.be.equal(200)
+  })
+  it('should return a json with teams data', () => {
+    expect(chaiHttpResponse.body).to.be.deep.equal(teamsArray[0])
+  })
+})
