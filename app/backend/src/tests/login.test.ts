@@ -41,7 +41,7 @@ describe('/login', () => {
   it('should return a status 200', async () => {
     chaiHttpResponse = await chai
       .request(app)
-      .post('/login');
+      .post('/login').send();
     expect(chaiHttpResponse.status.valueOf()).to.be.equal(200)
   });
 
