@@ -16,6 +16,7 @@ class App {
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
     this.app.post('/login', (req, res, next) => loginController.login(req, res, next));
+    this.app.get('/login/validate', (req, res, next) => LoginController.validate(req, res, next));
     this.app.use(errorMidddleware);
   }
 

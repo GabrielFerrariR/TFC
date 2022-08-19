@@ -2,7 +2,7 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import Unauthorized from '../errors/Unauthorized';
 import BadRequest from '../errors/BadRequest';
-import { ILogin, IToken } from '../interfaces/login';
+import { ILogin, IRole, IToken } from '../interfaces/login';
 import UserService from './userService';
 import Users from '../database/models/Users';
 import 'dotenv/config';
@@ -21,10 +21,16 @@ class LoginService {
 
     if (user) await LoginService.verifyPassword(password, user.password);
 
-    const token = jwt.sign(password, secret);
+    const token = jwt.sign({ data: { email, role: user?.role } }, secret);
     return {
       token,
     };
+  }
+
+  static async validate(auth: string): Promise<IRole> {
+    const decoded = jwt.verify(auth, secret);
+    const user = Object.values(decoded)[0];
+    return { role: user.role };
   }
 
   private static verifyFields({ email, password }: ILogin) {
