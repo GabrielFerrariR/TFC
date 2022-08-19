@@ -8,6 +8,12 @@ class TeamsController {
     const data: Teams[] = await this.teamsService.getAll();
     res.status(200).json(data);
   }
+
+  async getOne(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const { id } = req.params;
+    const data: Teams | null = await this.teamsService.getOne(+id);
+    res.status(200).json(data);
+  }
 }
 
 export default TeamsController;
