@@ -1,3 +1,4 @@
+import NotFound from '../errors/NotFound';
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
 import { IMatch } from '../interfaces/matches';
@@ -29,8 +30,18 @@ class MatchesService {
     if (homeTeam === awayTeam) {
       throw new Unauthorized('It is not possible to create a match with two equal teams');
     }
+    const teamsExist = await this.verifyTeams([homeTeam, awayTeam]);
+    if (!teamsExist) throw new NotFound('There is no team with such id!');
     const match = await this.model.create(values);
     return match;
+  }
+
+  private async verifyTeams(teams: number[]): Promise<boolean> {
+    const [team1, team2] = await Promise.all(teams.map(async (id) => this.model.findOne({
+      where: { id },
+      raw: true,
+    })));
+    return !!(team1 && team2);
   }
 
   async finishById(id: number) {
