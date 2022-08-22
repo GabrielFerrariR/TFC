@@ -38,7 +38,11 @@ Matches.init({
     },
   },
   awayTeamGoals: DataTypes.INTEGER,
-  inProgress!: DataTypes.BOOLEAN,
+  inProgress: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 }, {
   sequelize: db,
   modelName: 'matches',

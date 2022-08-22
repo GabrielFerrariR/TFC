@@ -1,5 +1,6 @@
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
+import { IMatch } from '../interfaces/matches';
 
 class MatchesService {
   constructor(private model = Matches) {}
@@ -22,9 +23,16 @@ class MatchesService {
     return matches;
   }
 
-  async getOne(id: number): Promise<Matches | null> {
-    const matches = await this.model.findByPk(id);
-    return matches;
+  async create(values : IMatch): Promise<Matches> {
+    const match = await this.model.create(values);
+    return match;
+  }
+
+  async finishById(id: number) {
+    const match = await this.model.update({ inProgress: false }, {
+      where: { id },
+    });
+    return match;
   }
 }
 
