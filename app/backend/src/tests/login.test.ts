@@ -98,7 +98,7 @@ describe('POST /login on fail', () => {
     beforeEach( async () => {
       sinon
         .stub(Users, 'findOne')
-        .resolves(validAdmin as unknown as Model)
+        .resolves(validAdmin as unknown as Model);
       chaiHttpResponse = await chai
         .request(app)
         .post('/login').send({

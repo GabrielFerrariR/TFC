@@ -36,3 +36,24 @@ describe('GET /matches', () => {
   } )
 
 })
+
+
+describe('POST /matches', () => {
+  describe('on a successful fetch', () => {
+    beforeEach(async () => {
+      sinon
+        .stub(Matches, 'findAll')
+        .resolves(matches as unknown as Model<any, any>[]);
+      chaiHttpResponse = await chai.request(app).post('/matches');
+    });
+    afterEach(sinon.restore)
+    it('should return status 200', async() => {
+      
+      expect(chaiHttpResponse.status).to.be.equal(200)
+    });
+    it('should return an unfiltered array of matches', () => {
+      expect(chaiHttpResponse.body).to.be.deep.equal(matches);
+    })
+  } )
+
+})
