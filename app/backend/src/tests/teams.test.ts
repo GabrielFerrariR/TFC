@@ -9,7 +9,7 @@ import Teams from '../database/models/Teams';
 
 import { Response } from 'superagent';
 import { Model } from 'sequelize/types';
-import { invalidUser, teamsArray, token, validAdmin, validUser } from './mocks';
+import { teamsArray } from './mocks';
 
 chai.use(chaiHttp);
 
