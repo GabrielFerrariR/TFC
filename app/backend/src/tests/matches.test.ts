@@ -20,10 +20,10 @@ let chaiHttpResponse: Response;
 describe('GET /matches', () => {
   describe('on a successful fetch', () => {
     beforeEach(async () => {
-      chaiHttpResponse = await chai.request(app).get('/matches');
       sinon
         .stub(Matches, 'findAll')
         .resolves(matches as unknown as Model<any, any>[]);
+      chaiHttpResponse = await chai.request(app).get('/matches');
     });
     afterEach(sinon.restore)
     it('should return status 200', async() => {

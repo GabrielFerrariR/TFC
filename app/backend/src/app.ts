@@ -3,6 +3,7 @@ import 'express-async-errors';
 import LoginController from './controllers/loginControler';
 import errorMidddleware from './middlewares/error.middleware';
 import teamsRoute from './routes/teamsRoute';
+import matchesRoute from './routes/matchesRoute';
 
 const loginController = new LoginController();
 
@@ -19,6 +20,7 @@ class App {
     this.app.post('/login', (req, res, next) => loginController.login(req, res, next));
     this.app.get('/login/validate', (req, res, next) => LoginController.validate(req, res, next));
     this.app.use(teamsRoute);
+    this.app.use(matchesRoute);
     this.app.use(errorMidddleware);
   }
 
