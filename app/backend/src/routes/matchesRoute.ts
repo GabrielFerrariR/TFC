@@ -10,7 +10,7 @@ route.patch(
   '/matches/:id/finish',
   (req, res, next) => matchesController.finishById(req, res, next),
 );
-route.get('/matches', (req, res, next) => matchesController.getAll(req, res, next));
+route.get('/matches', authMiddleware, (req, res, next) => matchesController.getAll(req, res, next));
 route.post(
   '/matches',
   authMiddleware,

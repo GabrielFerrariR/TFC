@@ -1,7 +1,7 @@
 import * as express from 'express';
 import 'express-async-errors';
 import LoginController from './controllers/loginControler';
-import errorMidddleware from './middlewares/error.middleware';
+import errorMiddleWare from './middlewares/error.middleware';
 import teamsRoute from './routes/teamsRoute';
 import matchesRoute from './routes/matchesRoute';
 
@@ -21,7 +21,7 @@ class App {
     this.app.get('/login/validate', (req, res, next) => LoginController.validate(req, res, next));
     this.app.use(teamsRoute);
     this.app.use(matchesRoute);
-    this.app.use(errorMidddleware);
+    this.app.use(errorMiddleWare);
   }
 
   private config():void {
