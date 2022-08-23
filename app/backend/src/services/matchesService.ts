@@ -1,7 +1,7 @@
 import NotFound from '../errors/NotFound';
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
-import { IMatch } from '../interfaces/matches';
+import { IMatch, IMatchBoard } from '../interfaces/matches';
 import Unauthorized from '../errors/Unauthorized';
 
 class MatchesService {
@@ -49,6 +49,12 @@ class MatchesService {
       where: { id },
     });
     return match;
+  }
+
+  async updateMatch(id:number, body: IMatchBoard) {
+    await this.model.update(body, {
+      where: { id },
+    });
   }
 }
 

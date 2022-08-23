@@ -4,3 +4,8 @@ export interface IMatch {
   'homeTeamGoals': number,
   'awayTeamGoals': number
 }
+
+export interface IMatchBoard {
+  'homeTeamGoals': number,
+  'awayTeamGoals': number
+}
