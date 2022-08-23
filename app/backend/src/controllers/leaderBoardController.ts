@@ -7,4 +7,9 @@ export default class LeaderBoardController {
     const data = await LeaderBoardService.getHomeScore();
     res.status(StatusCodes.OK).send(data);
   }
+
+  static async getAwayScore(req: Request, res: Response, _next: NextFunction): Promise<void> {
+    const data = await LeaderBoardService.getAwayScore();
+    res.status(StatusCodes.OK).send(data);
+  }
 }
