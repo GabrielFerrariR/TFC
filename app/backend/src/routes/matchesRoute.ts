@@ -6,12 +6,18 @@ const route = Router();
 
 const matchesController = new MatchesController();
 
-route.patch('/matches/:id', (req, res, next) => matchesController.updateMatch(req, res, next));
+route.patch(
+  '/matches/:id',
+  (req, res, next) => matchesController.updateMatch(req, res, next),
+);
 route.patch(
   '/matches/:id/finish',
   (req, res, next) => matchesController.finishById(req, res, next),
 );
-route.get('/matches', (req, res, next) => matchesController.getAll(req, res, next));
+route.get(
+  '/matches',
+  (req, res, next) => matchesController.getAll(req, res, next),
+);
 route.post(
   '/matches',
   authMiddleware,

@@ -4,6 +4,7 @@ import LoginController from './controllers/loginControler';
 import errorMiddleWare from './middlewares/error.middleware';
 import teamsRoute from './routes/teamsRoute';
 import matchesRoute from './routes/matchesRoute';
+import leaderBoardRoute from './routes/leaderBoardRoute';
 
 const loginController = new LoginController();
 
@@ -21,6 +22,7 @@ class App {
     this.app.get('/login/validate', (req, res, next) => LoginController.validate(req, res, next));
     this.app.use(teamsRoute);
     this.app.use(matchesRoute);
+    this.app.use(leaderBoardRoute);
     this.app.use(errorMiddleWare);
   }
 
