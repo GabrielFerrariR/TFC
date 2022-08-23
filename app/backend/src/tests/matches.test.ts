@@ -9,7 +9,7 @@ import Matches from '../database/models/Matches';
 
 import { Response } from 'superagent';
 import { Model } from 'sequelize/types';
-import { matches } from './mocks';
+import { matches, matchProgress } from './mocks';
 
 chai.use(chaiHttp);
 
@@ -55,5 +55,14 @@ describe('POST /matches', () => {
       expect(chaiHttpResponse.body).to.be.deep.equal(matches);
     })
   } )
+})
 
+describe('PATCH /matches/:id', () => {
+  it('should update the goals of the match with a status 200', async () => {
+    // sinon
+    //     .stub(Matches, 'findAll')
+    //     .resolves(matches as unknown as Model<any, any>[]);
+      chaiHttpResponse = await chai.request(app).post('/matches/1').send(matchProgress);
+      expect(chaiHttpResponse.status).to.be.equal(200)
+  })
 })
