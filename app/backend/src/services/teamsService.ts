@@ -13,5 +13,4 @@ class TeamsService {
     return teams;
   }
 }
-
 export default TeamsService;
