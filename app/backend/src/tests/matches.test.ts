@@ -9,7 +9,7 @@ import Matches from '../database/models/Matches';
 
 import { Response } from 'superagent';
 import { Model } from 'sequelize/types';
-import { matches, matchProgress } from './mocks';
+import { matches, matchProgress, token } from './mocks';
 
 chai.use(chaiHttp);
 
@@ -23,7 +23,7 @@ describe('GET /matches', () => {
       sinon
         .stub(Matches, 'findAll')
         .resolves(matches as unknown as Model<any, any>[]);
-      chaiHttpResponse = await chai.request(app).get('/matches');
+      chaiHttpResponse = await chai.request(app).get('/matches').set( { authorization: token });
     });
     afterEach(sinon.restore)
     it('should return status 200', async() => {
@@ -44,7 +44,10 @@ describe('POST /matches', () => {
       sinon
         .stub(Matches, 'findAll')
         .resolves(matches as unknown as Model<any, any>[]);
-      chaiHttpResponse = await chai.request(app).post('/matches');
+      chaiHttpResponse = await chai
+        .request(app)
+        .post('/matches')
+        .set( { authorization: token });
     });
     afterEach(sinon.restore)
     it('should return status 200', async() => {
@@ -62,7 +65,7 @@ describe('PATCH /matches/:id', () => {
     // sinon
     //     .stub(Matches, 'findAll')
     //     .resolves(matches as unknown as Model<any, any>[]);
-      chaiHttpResponse = await chai.request(app).post('/matches/1').send(matchProgress);
+      chaiHttpResponse = await chai.request(app).post('/matches/1').send(matchProgress).set( { authorization: token });
       expect(chaiHttpResponse.status).to.be.equal(200)
   })
 })

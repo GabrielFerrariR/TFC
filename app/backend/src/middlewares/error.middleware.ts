@@ -12,7 +12,6 @@ const errorMiddleWare: ErrorRequestHandler = (
   _next: NextFunction,
 ) => {
   const { code } = err;
-  console.log('🚀 ~ file: error.middleware.ts ~ line 15 ~ err', err);
   if (code) return res.status(code).json({ message: err.message });
   if (err.name === 'JsonWebTokenError') {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Token must be a valid token' });

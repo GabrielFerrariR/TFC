@@ -20,7 +20,7 @@ const { expect } = chai;
 describe('all routes', () => {
   it('throws an internal server error with status 500 when unexpected', async () => {
     sinon.stub(LoginController, 'validate').throws()
-    chaiHttpResponse = await (await chai.request(app).get('/login'))
+    chaiHttpResponse = (await chai.request(app).get('/login'))
     expect(chaiHttpResponse.status).to.be.equal(500);
   })
 })
