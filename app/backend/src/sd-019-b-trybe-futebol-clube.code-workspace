@@ -7,5 +7,7 @@
 			"path": ".."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "sd-019-b-trybe-futebol-clube"
+	}
 }
